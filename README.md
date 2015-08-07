@@ -10,25 +10,16 @@ The name comes from the genus of plants called [Phlomis](https://en.wikipedia.or
 | --------------- | ------------ | ------------- |
 | PHP >= 5.4.x    | `php -v`     | [php.net](http://php.net/manual/en/install.php) |
 
-For more installation notes, refer to the [Install gulp and Bower](#install-gulp-and-bower) section in this document.
+## Installation
 
-## Features
+- Clone the repository
+- Download Sage (either master or one of the releases)
+- Extract Sage files to the root directory of the repo, but _do not_ overwrite any of the already existing files such as:
+  - .gitignore
+  - README.md
 
-* [Sass](https://github.com/twbs/bootstrap-sass) [Bootstrap](http://getbootstrap.com/)
-* [Theme wrapper](https://roots.io/sage/docs/theme-wrapper/)
-* ARIA roles and microformats
-* Posts use the [hNews](http://microformats.org/wiki/hnews) microformat
-* [Multilingual ready](https://roots.io/wpml/) and over 30 available [community translations](https://github.com/roots/sage-translations)
-
-Install the [Soil](https://github.com/roots/soil) plugin to enable additional features:
-
-* Cleaner output of `wp_head` and enqueued assets
-* Cleaner HTML output of navigation menus
-* Root relative URLs
-* Nice search (`/search/query/`)
-* Google CDN jQuery snippet from [HTML5 Boilerplate](http://html5boilerplate.com/)
-* Google Analytics snippet from [HTML5 Boilerplate](http://html5boilerplate.com/)
-
-## Documentation
-
-Sage documentation is available at [https://roots.io/sage/docs/](https://roots.io/sage/docs/).
+```
+git@github.com:gabor-udvari/phlomis.git
+wget https://github.com/roots/sage/archive/8.2.1.zip -O sage.zip
+unzip -l sage.zip | sed -n 's/^[^a-z]*\(.*\/.*\)$/\1/p' | while read f; do unzip -qjn -d "$(echo $f | sed 's/^[^\/]*\(.*\)/phlomis\1/')" sage.zip "$f"; done
+```
