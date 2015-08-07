@@ -19,7 +19,7 @@ The name comes from the genus of plants called [Phlomis](https://en.wikipedia.or
   - README.md
 
 ```
-git@github.com:gabor-udvari/phlomis.git
+git clone git@github.com:gabor-udvari/phlomis.git
 wget https://github.com/roots/sage/archive/8.2.1.zip -O sage.zip
 unzip -l sage.zip | sed -n 's/^[^a-z]*\(.*\/.*\)$/\1/p' | while read f; do unzip -qjn -d "$(echo $f | sed 's/^[^\/]*\(.*\)/phlomis\1/')" sage.zip "$f"; done
 ```
