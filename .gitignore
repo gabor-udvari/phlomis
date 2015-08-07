@@ -1,0 +1,30 @@
+# Include your project-specific ignores in this file
+# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
+dist
+node_modules
+npm-debug.log
+vendor
+composer.lock
+# files from roots/sage
+404.php
+assets
+base.php
+bower.json
+CHANGELOG.md
+composer.json
+CONTRIBUTING.md
+functions.php
+gulpfile.js
+index.php
+lang
+lib
+LICENSE.md
+package.json
+page.php
+RoboFile.php
+ruleset.xml
+screenshot.png
+single.php
+style.css
+template-custom.php
+templates

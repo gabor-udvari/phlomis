@@ -1,0 +1,23 @@
+{
+    "name": "gabor-udvari/phlomis",
+    "description": "PHP based build tools for Sage using Composer and Robo",
+    "authors": [
+	{
+	    "name": "Gabor Udvari",
+	    "email": "gabor.udvari@gmail.com"
+	}
+    ],
+    "license": "MIT",
+    "type": "wordpress-theme",
+    "require": {
+	"php": ">=5.4.0",
+	"bower-asset/modernizr": "2.8.2",
+	"bower-asset/bootstrap-sass-official": "3.3.5"
+    },
+    "require-dev"	: {
+	"codegyre/robo": "*",
+	"fxp/composer-asset-plugin": "*",
+	"squizlabs/php_codesniffer": "*",
+	"leafo/scssphp": "*"	
+    }
+}
