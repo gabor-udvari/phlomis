@@ -21,7 +21,7 @@ The name comes from the genus of plants called [Phlomis](https://en.wikipedia.or
 ```
 git clone git@github.com:gabor-udvari/phlomis.git
 wget https://github.com/roots/sage/archive/8.2.1.zip -O sage.zip
-unzip -l sage.zip | sed -n 's/^[^a-z]*\(.*\/.*\)$/\1/p' | while read f; do unzip -qjn -d "$(echo $f | sed 's/^[^\/]*\(.*\)/phlomis\1/')" sage.zip "$f"; done
+unzip -l sage.zip | sed -n 's/^[^a-z]*\(.*\/.*\)$/\1/p' | while read f; do unzip -qjn -d "$(echo $f | sed 's/^[^\/]*\(.*\)[\/].*$/phlomis\1/')" sage.zip "$f"; done
 ```
 
 ## Keeping up to date with Sage
@@ -31,5 +31,5 @@ You can either download the latest zip of Sage and sync everything with rsync
 ```
 wget https://github.com/roots/sage/archive/master.zip -O sage.zip
 unzip -q sage.zip
-rsync -av --dry-run --exclude '.git*' --exclude 'README.md' sage-master/ phlomis/
+rsync -av --exclude '.git*' --exclude 'README.md' sage-master/ phlomis/
 ```
