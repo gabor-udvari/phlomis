@@ -34,10 +34,11 @@ unzip -q sage.zip
 rsync -av --exclude '.git*' --exclude 'README.md' sage-master/ phlomis/
 ```
 
-Or you can add roots/sage as an upstream remote with git
+Or you can add roots/sage as an upstream remote with git and merge
 
 ```
 cd phlomis
 git remote add upstream https://github.com/roots/sage.git
 git fetch upstream master
+git merge master upstream/master
 ```
