@@ -33,3 +33,11 @@ wget https://github.com/roots/sage/archive/master.zip -O sage.zip
 unzip -q sage.zip
 rsync -av --exclude '.git*' --exclude 'README.md' sage-master/ phlomis/
 ```
+
+Or you can add roots/sage as an upstream remote with git
+
+```
+cd phlomis
+git remote add upstream https://github.com/roots/sage.git
+git fetch upstream master
+```
