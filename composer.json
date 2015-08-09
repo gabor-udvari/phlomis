@@ -11,13 +11,18 @@
     "type": "wordpress-theme",
     "require": {
 	"php": ">=5.4.0",
-	"bower-asset/modernizr": "2.8.2",
-	"bower-asset/bootstrap-sass-official": "3.3.5"
+	"fxp/composer-asset-plugin": "*",
+        "bower-asset/modernizr": " 2.8.2",
+        "bower-asset/bootstrap-sass-official": " 3.3.5"
     },
     "require-dev"	: {
 	"codegyre/robo": "*",
-	"fxp/composer-asset-plugin": "*",
 	"squizlabs/php_codesniffer": "*",
 	"leafo/scssphp": "*"	
+    },
+    "scripts" : {
+	"post-install-cmd": [
+	    "composer.phar require \"bower-asset/modernizr: 2.8.2\" \"bower-asset/bootstrap-sass-official: 3.3.5\""
+	    ]
     }
 }
