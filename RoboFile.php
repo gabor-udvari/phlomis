@@ -18,13 +18,27 @@ class RoboFile extends \Robo\Tasks
         }
     }
 
+    public function install () {
+        // additional installation steps done after composer post-install
+        $this->taskRsync()
+            ->fromPath('vendor/roots/sage/')
+            ->toPath('./')
+            ->recursive()
+            ->exclude('.gitignore') 
+            ->exclude('README.md') 
+            ->dryRun()
+            ->verbose()
+            ->stats()
+            ->run();
+    }
+
     // ### Styles
     // `gulp styles` - Compiles, combines, and optimizes Bower CSS and project CSS.
     // By default this task will only log a warning if a precompiler error is
     // raised. If the `--production` flag is set: this task will fail outright.
     public function styles () {
         // compile LESS to CSS
-            // 'vendor/bower-asset/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss' => 'compiled.css'
+        // 'vendor/bower-asset/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss' => 'compiled.css'
         $this->taskMyScss([
             'assets/styles/main.scss' => 'dist/styles/main.css'
         ])

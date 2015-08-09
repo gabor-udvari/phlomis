@@ -9,11 +9,28 @@
     ],
     "license": "MIT",
     "type": "wordpress-theme",
+    "repositories" : [
+	{
+	    "type": "package",
+	    "package": {
+		"name": "roots/sage",
+		"version": "8.2.1",
+		"dist": {
+		    "url": "https://github.com/roots/sage/archive/8.2.1.zip",
+		    "type": "zip"
+		},
+		"source": {
+		    "type": "vcs",
+		    "url": "https://github.com/roots/sage.git",
+		    "reference": "8.2.1"
+		}
+	    }
+	}
+    ],
     "require": {
 	"php": ">=5.4.0",
 	"fxp/composer-asset-plugin": "*",
-        "bower-asset/modernizr": " 2.8.2",
-        "bower-asset/bootstrap-sass-official": " 3.3.5"
+	"roots/sage": "8.2.1",
     },
     "require-dev"	: {
 	"codegyre/robo": "*",
@@ -22,7 +39,8 @@
     },
     "scripts" : {
 	"post-install-cmd": [
-	    "composer.phar require \"bower-asset/modernizr: 2.8.2\" \"bower-asset/bootstrap-sass-official: 3.3.5\""
-	    ]
+	    "composer.phar require \"bower-asset/modernizr: 2.8.2\" \"bower-asset/bootstrap-sass-official: 3.3.5\"",
+	    "vendor/bin/robo install"
+	]
     }
 }
