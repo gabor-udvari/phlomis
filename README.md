@@ -9,29 +9,23 @@ The name comes from the genus of plants called [Phlomis](https://en.wikipedia.or
 | Prerequisite    | How to check | How to install
 | --------------- | ------------ | ------------- |
 | PHP >= 5.4.x    | `php -v`     | [php.net](http://php.net/manual/en/install.php) |
+| Composer >= 1.0-dev  | `composer.phar --version` | [getcomposer.org](https://getcomposer.org/download/) |
 
 ## Installation
 
-__TODO__ a simple `composer install` should handle all this
-
 - Clone the repository
-- Download Sage (either master or one of the releases)
-- Extract Sage files to the root directory of the repo, but _do not_ overwrite any of the already existing files such as:
-  - .gitignore
-  - README.md
-- Install the required packages with Composer
+- Step inside the local folder
+- Install the dependencies with Composer
 
 ```
 git clone git@github.com:gabor-udvari/phlomis.git
-wget https://github.com/roots/sage/archive/8.2.1.zip -O sage.zip
-unzip -l sage.zip | sed -n 's/^[^a-z]*\(.*\/.*\)$/\1/p' | while read f; do unzip -qjn -d "$(echo $f | sed 's/^[^\/]*\(.*\)[\/].*$/phlomis\1/')" sage.zip "$f"; done
 cd phlomis
 composer.phar install
 ```
 
 ## Usage
 
-__TODO__ only `styles` work currently
+__TODO__ only `styles` works currently
 
 You can use all the original Gulp commands just like you used with Sage, except these are now Robo commands:
 

@@ -26,9 +26,9 @@ class RoboFile extends \Robo\Tasks
             ->recursive()
             ->exclude('.gitignore') 
             ->exclude('README.md') 
-            ->dryRun()
-            ->verbose()
-            ->stats()
+            // ->dryRun()
+            // ->verbose()
+            // ->stats()
             ->run();
     }
 

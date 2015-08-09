@@ -30,7 +30,7 @@
     "require": {
 	"php": ">=5.4.0",
 	"fxp/composer-asset-plugin": "*",
-	"roots/sage": "8.2.1",
+	"roots/sage": "8.2.1"
     },
     "require-dev"	: {
 	"codegyre/robo": "*",
