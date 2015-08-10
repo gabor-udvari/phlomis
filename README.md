@@ -4,6 +4,14 @@ Phlomis is a project for replacing the Node.js based build tools of [Sage](https
 
 The name comes from the genus of plants called [Phlomis](https://en.wikipedia.org/wiki/Phlomis). One of the members of the genus is Phlomis russeliana which has the common name Turkish sage. That and the "Ph" at the beginning makes it a perfect name for a PHP oriented fork of Sage.
 
+## Table of contents
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Keeping up to date with Sage](#keeping-up-to-date-with-sage)
+- [Comparison with Sage](#comparison-with-sage)
+
 ## Requirements
 
 | Prerequisite    | How to check | How to install
@@ -50,3 +58,28 @@ git remote add upstream https://github.com/roots/sage.git
 git fetch upstream master
 git merge master upstream/master
 ```
+
+## Comparison with Sage
+
+### Build process comparison
+
+<table>
+<tr>
+	<th>Sage
+	<th>Phlomis
+<tr>
+	<td>
+		<strong>bower</strong>: download packages natively:
+		<ul>
+			<li>modernizr: 2.8.2
+			<li>bootstrap-sass-official: 3.3.5
+		</ul>
+		And put them into bower_components
+	<td>
+	  <strong>composer</strong>: download packages with composer-asset-plugin:
+		<ul>
+			<li>modernizr: 2.8.2
+			<li>bootstrap-sass-official: 3.3.5
+		</ul>
+		And put them into vendor/bower-assets
+</table>
