@@ -85,6 +85,7 @@ class MyScssTask extends \Robo\Task\Assets\Less
          */
         $scss = new \Leafo\ScssPhp\Compiler();
         $scss->setImportPaths([
+            'assets/styles',
             'vendor/bower-asset/bootstrap-sass-official/assets/stylesheets'
         ]);
         /*
@@ -96,7 +97,7 @@ class MyScssTask extends \Robo\Task\Assets\Less
             }
             return $dir . '/_'.$file.'.scss';
         });
-         */
+        // */
         // $parser->SetImportDirs( $directories );
         //$parser->parse($lessCode);
         // $parser->parseFile($file);
