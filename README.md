@@ -82,4 +82,15 @@ git merge master upstream/master
 			<li>bootstrap-sass-official: 3.3.5
 		</ul>
 		And put them into vendor/bower-assets
+<tr>
+<td>
+<strong>gulp</strong>: download modules natively
+<td>
+<strong>Robo</strong>: modules are part of Phlomis (until they are merged with upstream)
+<tr>
+<td>
+<strong>gulp</strong>: insert dependency paths with wiredep
+<tr>
+<td>
+<strong>Robo</strong>: no depency path insertion at this time
 </table>
