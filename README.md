@@ -65,8 +65,8 @@ git merge master upstream/master
 
 <table>
 <tr>
-	<th>Sage
-	<th>Phlomis
+	<th width="50%">Sage
+	<th width="50%">Phlomis
 <tr>
 	<td>
 		<strong>bower</strong>: download packages natively:
@@ -76,7 +76,7 @@ git merge master upstream/master
 		</ul>
 		And put them into bower_components
 	<td>
-	  <strong>composer</strong>: download packages with composer-asset-plugin:
+	  <strong>composer</strong>: download packages with composer-&#8203;asset-plugin:
 		<ul>
 			<li>modernizr: 2.8.2
 			<li>bootstrap-sass-official: 3.3.5
@@ -90,7 +90,6 @@ git merge master upstream/master
 <tr>
 <td>
 <strong>gulp</strong>: insert dependency paths with wiredep
-<tr>
 <td>
 <strong>Robo</strong>: no depency path insertion at this time
 </table>

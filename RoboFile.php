@@ -37,6 +37,9 @@ class RoboFile extends \Robo\Tasks
     // By default this task will only log a warning if a precompiler error is
     // raised. If the `--production` flag is set: this task will fail outright.
     public function styles () {
+        // fix path issues
+        $this->pathDependencies();
+
         // compile LESS to CSS
         // 'vendor/bower-asset/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss' => 'compiled.css'
         $this->taskMyScss([
@@ -59,6 +62,14 @@ class RoboFile extends \Robo\Tasks
             ->remove('_src_/css/compiled.css')
             ->run();
          */
+    }
+
+    private function pathDependencies () {
+        // replace bower_asset directories
+        $this->taskReplaceInFile('assets/styles/main.scss')
+            ->from('../../bower_components')
+            ->to('')
+            ->run();
     }
 }
 
@@ -86,7 +97,7 @@ class MyScssTask extends \Robo\Task\Assets\Less
         $scss = new \Leafo\ScssPhp\Compiler();
         $scss->setImportPaths([
             'assets/styles',
-            'vendor/bower-asset/bootstrap-sass-official/assets/stylesheets'
+            'vendor/bower-asset'
         ]);
         /*
         $scss->addImportPath(function($path) {
