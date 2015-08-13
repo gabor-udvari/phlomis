@@ -35,10 +35,15 @@
     "require-dev"	: {
 	"codegyre/robo": "*",
 	"squizlabs/php_codesniffer": "*",
-	"leafo/scssphp": "*"	
+	"leafo/scssphp": "*",
+	"patchwork/jsqueeze": "~1.0"
     },
     "scripts" : {
 	"post-install-cmd": [
+	    "composer.phar require \"bower-asset/modernizr: 2.8.2\" \"bower-asset/bootstrap-sass-official: 3.3.5\"",
+	    "vendor/bin/robo install"
+	],
+	"post-update-cmd": [
 	    "composer.phar require \"bower-asset/modernizr: 2.8.2\" \"bower-asset/bootstrap-sass-official: 3.3.5\"",
 	    "vendor/bin/robo install"
 	]
