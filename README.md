@@ -86,10 +86,35 @@ git merge master upstream/master
 <td>
 <strong>gulp</strong>: download modules natively
 <td>
-<strong>Robo</strong>: modules are part of Phlomis (until they are merged with upstream)
+<strong>Robo</strong>: modules are either built-in to Robo or shipped with Phlomis
 <tr>
 <td>
 <strong>gulp</strong>: insert dependency paths with wiredep
 <td>
-<strong>Robo</strong>: no depency path insertion at this time
+<strong>Robo</strong>: no task for depency insertion at this time
+<tr>
+<td>
+<strong>gulp</strong>: copy fonts with gulp-flatten
+<td>
+<strong>Robo</strong>: no task for that at this time
+<tr>
+<td>
+<strong>gulp</strong>: minifying JS with UglifyJS
+<td>
+<strong>Robo</strong>: minifying JS with JSQueeze
+<tr>
+<td>
+<strong>gulp</strong>: minifying images with gulp-imagemin
+<td>
+<strong>Robo</strong>: no image minifying task for that at this time
+<tr>
+<td>
+<strong>gulp</strong>: watching files is built-in
+<td>
+<strong>Robo</strong>: watching files is built-in
+<tr>
+<td>
+<strong>gulp</strong>: updating browsers with Browserify
+<td>
+<strong>Robo</strong>: updating browsers not implemented yet
 </table>
