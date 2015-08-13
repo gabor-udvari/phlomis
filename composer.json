@@ -9,6 +9,9 @@
     ],
     "license": "MIT",
     "type": "wordpress-theme",
+    "autoload": {
+	"psr-4": { "": "./" }
+    },
     "repositories" : [
 	{
 	    "type": "package",
@@ -30,7 +33,9 @@
     "require": {
 	"php": ">=5.4.0",
 	"fxp/composer-asset-plugin": "*",
-	"roots/sage": "8.2.1"
+	"roots/sage": "8.2.1",
+	"bower-asset/modernizr": " 2.8.2",
+	"bower-asset/bootstrap-sass-official": " 3.3.5"
     },
     "require-dev"	: {
 	"codegyre/robo": "*",
@@ -39,12 +44,11 @@
 	"patchwork/jsqueeze": "~1.0"
     },
     "scripts" : {
-	"post-install-cmd": [
-	    "composer.phar require \"bower-asset/modernizr: 2.8.2\" \"bower-asset/bootstrap-sass-official: 3.3.5\"",
-	    "vendor/bin/robo install"
+	"pre-install-cmd": [
+	    "ComposerHelper::skipAssets"
 	],
-	"post-update-cmd": [
-	    "composer.phar require \"bower-asset/modernizr: 2.8.2\" \"bower-asset/bootstrap-sass-official: 3.3.5\"",
+	"post-install-cmd": [
+	    "composer.phar update",
 	    "vendor/bin/robo install"
 	]
     }

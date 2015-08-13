@@ -4,6 +4,7 @@
  *
  * @see http://robo.li/
  */
+
 class RoboFile extends \Robo\Tasks
 {
     use MyScss;
