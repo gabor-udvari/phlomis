@@ -42,21 +42,11 @@ You can use all the original Gulp commands just like you used with Sage, except 
 
 ## Keeping up to date with Sage
 
-You can either download the latest zip of Sage and sync everything with rsync
+Just edit your `composer.json`, increase the version number for Sage or put dev-master there and update with Composer:
 
 ```
-wget https://github.com/roots/sage/archive/master.zip -O sage.zip
-unzip -q sage.zip
-rsync -av --exclude '.git*' --exclude 'README.md' sage-master/ phlomis/
-```
-
-Or you can add roots/sage as an upstream remote with git and merge
-
-```
-cd phlomis
-git remote add upstream https://github.com/roots/sage.git
-git fetch upstream master
-git merge master upstream/master
+sed -i 's/\(.*bower-asset\/sage.*:.*"\).*\(".*\)$/\1dev-master\2/g' composer.json
+composer.phar update
 ```
 
 ## Comparison with Sage
@@ -71,15 +61,15 @@ git merge master upstream/master
 	<td>
 		<strong>bower</strong>: download packages natively:
 		<ul>
-			<li>modernizr: 2.8.2
-			<li>bootstrap-sass-official: 3.3.5
+			<li>modernizr
+			<li>bootstrap-sass-official
 		</ul>
 		And put them into bower_components
 	<td>
 	  <strong>composer</strong>: download packages with composer-&#8203;asset-plugin:
 		<ul>
-			<li>modernizr: 2.8.2
-			<li>bootstrap-sass-official: 3.3.5
+			<li>modernizr
+			<li>bootstrap-sass-official
 		</ul>
 		And put them into vendor/bower-assets
 <tr>
