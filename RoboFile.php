@@ -22,7 +22,7 @@ class RoboFile extends \Robo\Tasks
     public function install () {
         // additional installation steps done after composer post-install
         $this->taskRsync()
-            ->fromPath('vendor/roots/sage/')
+            ->fromPath('vendor/bower-asset/sage/')
             ->toPath('./')
             ->recursive()
             ->exclude('.gitignore') 

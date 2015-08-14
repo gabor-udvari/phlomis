@@ -12,36 +12,24 @@
     "autoload": {
 	"psr-4": { "": "./" }
     },
-    "repositories" : [
-	{
-	    "type": "package",
-	    "package": {
-		"name": "roots/sage",
-		"version": "8.2.1",
-		"dist": {
-		    "url": "https://github.com/roots/sage/archive/8.2.1.zip",
-		    "type": "zip"
-		},
-		"source": {
-		    "type": "vcs",
-		    "url": "https://github.com/roots/sage.git",
-		    "reference": "8.2.1"
-		}
-	    }
-	}
-    ],
     "require": {
 	"php": ">=5.4.0",
 	"fxp/composer-asset-plugin": "*",
-	"roots/sage": "8.2.1",
-	"bower-asset/modernizr": " 2.8.2",
-	"bower-asset/bootstrap-sass-official": " 3.3.5"
+	"bower-asset/sage": "8.2.1"
     },
     "require-dev"	: {
 	"codegyre/robo": "*",
 	"squizlabs/php_codesniffer": "*",
 	"leafo/scssphp": "*",
 	"patchwork/jsqueeze": "~1.0"
+    },
+    "extra": {
+	"asset-repositories": [
+	    {
+		"type": "bower-vcs",
+		"url": "https://github.com/roots/sage.git"
+	    }
+	]
     },
     "scripts" : {
 	"pre-install-cmd": [
