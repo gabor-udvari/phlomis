@@ -36,6 +36,11 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
+    public function build () {
+        $this->styles();
+        $this->scripts();
+    }
+
     // ### Styles
     // `gulp styles` - Compiles, combines, and optimizes Bower CSS and project CSS.
     // By default this task will only log a warning if a precompiler error is

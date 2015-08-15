@@ -33,8 +33,6 @@ composer.phar install
 
 ## Usage
 
-__TODO__ only `styles` works currently
-
 You can use all the original Gulp commands just like you used with Sage, except these are now Robo commands:
 
 - `vendor/bin/robo build`
