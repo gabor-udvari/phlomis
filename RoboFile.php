@@ -17,6 +17,9 @@ class RoboFile extends \Robo\Tasks
         if ( ! is_dir('dist/styles') ) {
             mkdir('dist/styles');
         }
+        if ( ! is_dir('dist/scripts') ) {
+            mkdir('dist/scripts');
+        }
     }
 
     public function install () {
@@ -63,6 +66,18 @@ class RoboFile extends \Robo\Tasks
             ->remove('_src_/css/compiled.css')
             ->run();
          */
+    }
+
+    // ### Scripts
+    // `gulp scripts` - Runs JSHint then compiles, combines, and optimizes Bower JS
+    // and project JS.
+    public function scripts () {
+        $this->taskMinify( 'assets/scripts/main.js' )
+            ->to('dist/scripts/main.js')
+            ->run();
+        $this->taskMinify( 'vendor/bower-asset/modernizr/modernizr.js' )
+            ->to('dist/scripts/modernizr.js')
+            ->run();
     }
 
     private function pathDependencies () {
