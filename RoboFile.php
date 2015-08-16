@@ -7,142 +7,107 @@
 
 class RoboFile extends \Robo\Tasks
 {
-    use MyScss;
+  use MyScss;
 
-    public function __construct () {
-        // check the build folder
-        if ( ! is_dir('dist') ) {
-            mkdir('dist');
-        }
-        if ( ! is_dir('dist/styles') ) {
-            mkdir('dist/styles');
-        }
-        if ( ! is_dir('dist/scripts') ) {
-            mkdir('dist/scripts');
-        }
+  public function __construct() {
+    // check the build folder
+    if (! is_dir('dist')) {
+      mkdir('dist');
     }
-
-    public function install () {
-        // additional installation steps done after composer post-install
-        $this->taskRsync()
-            ->fromPath('vendor/bower-asset/sage/')
-            ->toPath('./')
-            ->recursive()
-            ->exclude('.gitignore') 
-            ->exclude('README.md') 
-            // ->dryRun()
-            // ->verbose()
-            // ->stats()
-            ->run();
+    if (! is_dir('dist/styles')) {
+      mkdir('dist/styles');
     }
-
-    public function build () {
-        $this->styles();
-        $this->scripts();
+    if (! is_dir('dist/scripts')) {
+      mkdir('dist/scripts');
     }
+  }
 
-    // ### Styles
-    // `gulp styles` - Compiles, combines, and optimizes Bower CSS and project CSS.
-    // By default this task will only log a warning if a precompiler error is
-    // raised. If the `--production` flag is set: this task will fail outright.
-    public function styles () {
-        // fix path issues
-        $this->pathDependencies();
+  public function install() {
+    // additional installation steps done after composer post-install
+    $this->taskRsync()
+      ->fromPath('vendor/bower-asset/sage/')
+      ->toPath('./')
+      ->recursive()
+      ->exclude('.gitignore')
+      ->exclude('README.md')
+      // ->dryRun()
+      // ->verbose()
+      // ->stats()
+      ->run();
+  }
 
-        // compile LESS to CSS
-        // 'vendor/bower-asset/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss' => 'compiled.css'
-        $this->taskMyScss([
-            'assets/styles/main.scss' => 'dist/styles/main.css'
-        ])
-        ->compiler('myscss')
-        ->run();
+  public function build() {
+    $this->styles();
+    $this->scripts();
+  }
 
-        /*
-        // concat compiled CSS with info CSS
-        $this->taskConcat([
-            '_src_/css/udionline-less/info.less',
-            '_src_/css/compiled.css'
-        ])
-        ->to('style.css')
-        ->run();
+  // ### Styles
+  // `gulp styles` - Compiles, combines, and optimizes Bower CSS and project CSS.
+  // By default this task will only log a warning if a precompiler error is
+  // raised. If the `--production` flag is set: this task will fail outright.
+  public function styles() {
+    // fix path issues
+    $this->pathDependencies();
 
-        // remove temporary CSS
-        $this->taskFileSystemStack()
-            ->remove('_src_/css/compiled.css')
-            ->run();
-         */
-    }
+    // compile LESS to CSS
+    // 'vendor/bower-asset/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss' => 'compiled.css'
+    $this->taskMyScss(
+      [
+        'assets/styles/main.scss' => 'dist/styles/main.css'
+      ]
+    )
+    ->compiler('myscss')
+    ->run();
+  }
 
-    // ### Scripts
-    // `gulp scripts` - Runs JSHint then compiles, combines, and optimizes Bower JS
-    // and project JS.
-    public function scripts () {
-        $this->taskMinify( 'assets/scripts/main.js' )
-            ->to('dist/scripts/main.js')
-            ->run();
-        $this->taskMinify( 'vendor/bower-asset/modernizr/modernizr.js' )
-            ->to('dist/scripts/modernizr.js')
-            ->run();
-    }
+  // ### Scripts
+  // `gulp scripts` - Runs JSHint then compiles, combines, and optimizes Bower JS
+  // and project JS.
+  public function scripts() {
+    $this->taskMinify('assets/scripts/main.js')
+      ->to('dist/scripts/main.js')
+      ->run();
+    $this->taskMinify('vendor/bower-asset/modernizr/modernizr.js')
+      ->to('dist/scripts/modernizr.js')
+      ->run();
+  }
 
-    private function pathDependencies () {
-        // replace bower_asset directories
-        $this->taskReplaceInFile('assets/styles/main.scss')
-            ->from('../../bower_components')
-            ->to('')
-            ->run();
-    }
+  private function pathDependencies() {
+    // replace bower_asset directories
+    $this->taskReplaceInFile('assets/styles/main.scss')
+      ->from('../../bower_components')
+      ->to('')
+      ->run();
+  }
 }
 
 trait MyScss
 {
-    function taskMyScss($input)
-    {
-        return new MyScssTask($input);
-    }
+  function taskMyScss($input) {
+    return new MyScssTask($input);
+  }
 }
 
 class MyScssTask extends \Robo\Task\Assets\Less
 {
-    protected function myscss($file)
-    {
-        $scssCode = file_get_contents($file);
-        /*
-        $parser = new \Less_Parser();
-        $directories = array(
-            '/var/www/udionline/wp-content/themes/udionline/_src_/css/udionline-less'=>'../udionline-less',
-            '/var/www/udionline/wp-content/themes/udionline/_src_/css/less'=>'./'
-        );
-        $options = array( 'import_callback'=>'import_callback_function' );
-         */
-        $scss = new \Leafo\ScssPhp\Compiler();
-        $scss->setImportPaths([
-            'assets/styles',
-            'vendor/bower-asset'
-        ]);
-        /*
-        $scss->addImportPath(function($path) {
-            $file = basename($path);
-            $dir = 'vendor/bower-asset/bootstrap-sass-official/assets/stylesheets/bootstrap';
-            if (!file_exists($dir . '/_'.$file.'.scss')) { 
-                return null;
-            }
-            return $dir . '/_'.$file.'.scss';
-        });
-        // */
-        // $parser->SetImportDirs( $directories );
-        //$parser->parse($lessCode);
-        // $parser->parseFile($file);
-        return $scss->compile($scssCode);
-    }
+  protected function myscss($file) {
+    $scssCode = file_get_contents($file);
+    $scss = new \Leafo\ScssPhp\Compiler();
+    $scss->setImportPaths(
+      [
+        'assets/styles',
+        'vendor/bower-asset'
+      ]
+    );
+    return $scss->compile($scssCode);
+  }
 
-    protected function lessCompilers()
-    {
-        return [
-            'lessphp', //https://github.com/leafo/lessphp
-            'less', // https://github.com/oyejorge/less.php,
-            'myless', // https://github.com/oyejorge/less.php, but with advanced options
-            'myscss' // https://github.com/leafo/scssphp
-        ];
-    }
+  protected function lessCompilers() {
+    return [
+      'lessphp', //https://github.com/leafo/lessphp
+      'less', // https://github.com/oyejorge/less.php,
+      'myless', // https://github.com/oyejorge/less.php, but with advanced options
+      'myscss' // https://github.com/leafo/scssphp
+    ];
+  }
 }
