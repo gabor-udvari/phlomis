@@ -9,6 +9,9 @@ class RoboFile extends \Robo\Tasks
 {
   use MyScss;
 
+  /**
+   * Contruct for the class, checks and creates the dist folders
+   */
   public function __construct() {
     // check the build folder
     if (! is_dir('dist')) {
@@ -22,8 +25,11 @@ class RoboFile extends \Robo\Tasks
     }
   }
 
+  /**
+   * Installation steps done after composer post-install
+   * Copying the Sage files with rsync
+   */
   public function install() {
-    // additional installation steps done after composer post-install
     $this->taskRsync()
       ->fromPath('vendor/bower-asset/sage/')
       ->toPath('./')
@@ -36,15 +42,19 @@ class RoboFile extends \Robo\Tasks
       ->run();
   }
 
+  /**
+   * Main build step, included to be compatible with Sage gulp
+   */
   public function build() {
     $this->styles();
     $this->scripts();
   }
 
-  // ### Styles
-  // `gulp styles` - Compiles, combines, and optimizes Bower CSS and project CSS.
-  // By default this task will only log a warning if a precompiler error is
-  // raised. If the `--production` flag is set: this task will fail outright.
+  /** 
+   * `gulp styles` - Compiles, combines, and optimizes Bower CSS and project CSS
+   * By default this task will only log a warning if a precompiler error is
+   * raised. If the `--production` flag is set: this task will fail outright.
+   */
   public function styles() {
     // fix path issues
     $this->pathDependencies();
@@ -60,9 +70,10 @@ class RoboFile extends \Robo\Tasks
     ->run();
   }
 
-  // ### Scripts
-  // `gulp scripts` - Runs JSHint then compiles, combines, and optimizes Bower JS
-  // and project JS.
+  /**
+   * `gulp scripts` - Runs JSHint then compiles, combines, and optimizes Bower JS
+   * and project JS.
+   */
   public function scripts() {
     $this->taskMinify('assets/scripts/main.js')
       ->to('dist/scripts/main.js')
@@ -72,6 +83,9 @@ class RoboFile extends \Robo\Tasks
       ->run();
   }
 
+  /**
+   * Search and replace path dependencies, simple replacement for wiredep
+   */
   private function pathDependencies() {
     // replace bower_asset directories
     $this->taskReplaceInFile('assets/styles/main.scss')

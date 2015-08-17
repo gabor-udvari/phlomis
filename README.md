@@ -43,7 +43,7 @@ You can use all the original Gulp commands just like you used with Sage, except 
 Just edit your `composer.json`, increase the version number for Sage or put dev-master there and update with Composer:
 
 ```
-sed -i 's/\(.*bower-asset\/sage.*:.*"\).*\(".*\)$/\1dev-master\2/g' composer.json
+sed -i '/bower-asset\/sage/ s/8\.2\.1/dev-master/' composer.json
 composer.phar update
 ```
 
