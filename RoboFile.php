@@ -7,6 +7,7 @@
 
 class RoboFile extends \Robo\Tasks
 {
+  // TODO: once the Scss task pull-request is accepted this can be removed
   use MyScss;
 
   /**
@@ -59,8 +60,10 @@ class RoboFile extends \Robo\Tasks
     // fix path issues
     $this->pathDependencies();
 
-    // compile LESS to CSS
+    // TODO: once the Scss task pull-request is accepted this can be added
+    // compile Scss to CSS
     // 'vendor/bower-asset/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss' => 'compiled.css'
+    // /*
     $this->taskMyScss(
       [
         'assets/styles/main.scss' => 'dist/styles/main.css'
@@ -68,6 +71,20 @@ class RoboFile extends \Robo\Tasks
     )
     ->compiler('myscss')
     ->run();
+    // */
+
+    // TODO: once the Scss task pull-request is accepted this can be added
+    /*
+    $this->taskScss(
+      [
+        'assets/styles/main.scss' => 'dist/styles/main.css'
+      ]
+    )
+    ->addImportPath('assets/styles')
+    ->addImportPath('vendor/bower-asset')
+    ->setFormatter('Leafo\ScssPhp\Formatter\Compressed')
+    ->run();
+     */
   }
 
   /**
