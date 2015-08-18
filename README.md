@@ -18,6 +18,7 @@ The name comes from the genus of plants called [Phlomis](https://en.wikipedia.or
 | --------------- | ------------ | ------------- |
 | PHP >= 5.4.x    | `php -v`     | [php.net](http://php.net/manual/en/install.php) |
 | Composer >= 1.0-dev  | `composer.phar --version` | [getcomposer.org](https://getcomposer.org/download/) |
+| rsync >= 3.1.0	| `rsync --version` | [rsync.samba.org](https://rsync.samba.org/) |
 
 ## Installation
 
