@@ -21,7 +21,8 @@
 	"codegyre/robo": "*",
 	"squizlabs/php_codesniffer": "*",
 	"leafo/scssphp": "*",
-	"patchwork/jsqueeze": "~1.0"
+	"patchwork/jsqueeze": "~1.0",
+	"composer/composer": "dev-master"
     },
     "extra": {
 	"asset-repositories": [

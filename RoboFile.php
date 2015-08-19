@@ -10,6 +10,9 @@ class RoboFile extends \Robo\Tasks
   // TODO: once the Scss task pull-request is accepted this can be removed
   use MyScss;
 
+  protected $vendorDir;
+  protected $assetPackages;
+
   /**
    * Contruct for the class, checks and creates the dist folders
    */
@@ -24,6 +27,31 @@ class RoboFile extends \Robo\Tasks
     if (! is_dir('dist/scripts')) {
       mkdir('dist/scripts');
     }
+
+    // get the vendorDir
+    $io = new Composer\IO\NullIO();
+    $factory = new Composer\Factory();
+    $composer = $factory->createComposer($io);
+    $this->vendorDir = rtrim($composer->getConfig()->get('vendor-dir'), '/');
+
+    // go through installed packages (taken from Composer\Command\ShowCommand.php)
+    $installedRepo = $composer->getRepositoryManager()->getLocalRepository();
+
+    $this->assetPackages = [];
+    foreach ($installedRepo->getPackages() as $package) {
+      if ($package->getType() == 'bower-asset-library' ) {
+        // store the extra information for assets
+        $this->assetPackages[$package->getPrettyName()] = $package->getExtra();
+      }
+    }
+  }
+
+  public function getAssetPath($packageName) {
+    foreach ($this->assetPackages as $k => $package) {
+      if ( strpos($k, $packageName) !== FALSE) {
+        return $this->vendorDir .'/'. $k . '/';
+      }
+    }
   }
 
   /**
@@ -32,7 +60,7 @@ class RoboFile extends \Robo\Tasks
    */
   public function install() {
     $this->taskRsync()
-      ->fromPath('vendor/bower-asset/sage/')
+      ->fromPath($this->getAssetPath('sage'))
       ->toPath('./')
       ->recursive()
       ->exclude('.gitignore')
@@ -60,9 +88,8 @@ class RoboFile extends \Robo\Tasks
     // fix path issues
     $this->pathDependencies();
 
-    // TODO: once the Scss task pull-request is accepted this can be added
     // compile Scss to CSS
-    // 'vendor/bower-asset/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss' => 'compiled.css'
+    // TODO: once the Scss task pull-request is accepted this can be removed
     // /*
     $this->taskMyScss(
       [
