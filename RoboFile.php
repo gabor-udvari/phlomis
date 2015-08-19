@@ -36,20 +36,30 @@ class RoboFile extends \Robo\Tasks
 
     // go through installed packages (taken from Composer\Command\ShowCommand.php)
     $installedRepo = $composer->getRepositoryManager()->getLocalRepository();
-
     $this->assetPackages = [];
     foreach ($installedRepo->getPackages() as $package) {
       if ($package->getType() == 'bower-asset-library' ) {
         // store the extra information for assets
-        $this->assetPackages[$package->getPrettyName()] = $package->getExtra();
+        $this->assetPackages[$package->getPrettyName()] = $package;
       }
     }
   }
 
-  public function getAssetPath($packageName) {
+  private function getAssetPath($packageName) {
     foreach ($this->assetPackages as $k => $package) {
       if ( strpos($k, $packageName) !== FALSE) {
         return $this->vendorDir .'/'. $k . '/';
+      }
+    }
+  }
+
+  private function getAssetMain($packageName) {
+    foreach ($this->assetPackages as $k => $package) {
+      if ( strpos($k, $packageName) !== FALSE) {
+        $extra = $package->getExtra();
+        $main = '';
+        if (isset($extra['bower-asset-main'])) $main = $extra['bower-asset-main'];
+        return $main;
       }
     }
   }
@@ -125,6 +135,7 @@ class RoboFile extends \Robo\Tasks
     $this->taskMinify('vendor/bower-asset/modernizr/modernizr.js')
       ->to('dist/scripts/modernizr.js')
       ->run();
+    // echo $this->getAssetMain('jquery');
   }
 
   /**
