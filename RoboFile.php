@@ -7,9 +7,6 @@
 
 class RoboFile extends \Robo\Tasks
 {
-  // TODO: once the Scss task pull-request is accepted this can be removed
-  use MyScss;
-
   protected $vendorDir;
   protected $assetPackages;
 
@@ -98,20 +95,6 @@ class RoboFile extends \Robo\Tasks
     // fix path issues
     $this->pathDependencies();
 
-    // compile Scss to CSS
-    // TODO: once the Scss task pull-request is accepted this can be removed
-    // /*
-    $this->taskMyScss(
-      [
-        'assets/styles/main.scss' => 'dist/styles/main.css'
-      ]
-    )
-    ->compiler('myscss')
-    ->run();
-    // */
-
-    // TODO: once the Scss task pull-request is accepted this can be added
-    /*
     $this->taskScss(
       [
         'assets/styles/main.scss' => 'dist/styles/main.css'
@@ -121,7 +104,6 @@ class RoboFile extends \Robo\Tasks
     ->addImportPath('vendor/bower-asset')
     ->setFormatter('Leafo\ScssPhp\Formatter\Compressed')
     ->run();
-     */
   }
 
   /**
@@ -147,36 +129,5 @@ class RoboFile extends \Robo\Tasks
       ->from('../../bower_components')
       ->to('')
       ->run();
-  }
-}
-
-trait MyScss
-{
-  function taskMyScss($input) {
-    return new MyScssTask($input);
-  }
-}
-
-class MyScssTask extends \Robo\Task\Assets\Less
-{
-  protected function myscss($file) {
-    $scssCode = file_get_contents($file);
-    $scss = new \Leafo\ScssPhp\Compiler();
-    $scss->setImportPaths(
-      [
-        'assets/styles',
-        'vendor/bower-asset'
-      ]
-    );
-    return $scss->compile($scssCode);
-  }
-
-  protected function lessCompilers() {
-    return [
-      'lessphp', //https://github.com/leafo/lessphp
-      'less', // https://github.com/oyejorge/less.php,
-      'myless', // https://github.com/oyejorge/less.php, but with advanced options
-      'myscss' // https://github.com/leafo/scssphp
-    ];
   }
 }

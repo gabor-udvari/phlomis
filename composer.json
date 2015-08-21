@@ -18,7 +18,7 @@
 	"bower-asset/sage": "8.2.1"
     },
     "require-dev"	: {
-	"codegyre/robo": "*",
+	"codegyre/robo": "dev-master",
 	"squizlabs/php_codesniffer": "*",
 	"leafo/scssphp": "*",
 	"patchwork/jsqueeze": "~1.0",
