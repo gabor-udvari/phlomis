@@ -117,7 +117,8 @@ class RoboFile extends \Robo\Tasks
     $this->taskMinify('vendor/bower-asset/modernizr/modernizr.js')
       ->to('dist/scripts/modernizr.js')
       ->run();
-    // echo $this->getAssetMain('jquery');
+    $this->say('jquery: ' . $this->getAssetMain('jquery'));
+    $this->say('modernizr: ' . $this->getAssetMain('modernizr'));
   }
 
   /**
