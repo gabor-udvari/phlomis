@@ -56,6 +56,10 @@ class RoboFile extends \Robo\Tasks
         $extra = $package->getExtra();
         $main = '';
         if (isset($extra['bower-asset-main'])) $main = $extra['bower-asset-main'];
+        // check if single value is given, then return a string instead of an array
+        if (is_array($main) && count($main) == 1){
+          $main = $main[0];
+        }
         return $main;
       }
     }
