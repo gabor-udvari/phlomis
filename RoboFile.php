@@ -58,7 +58,7 @@ class RoboFile extends \Robo\Tasks
         if (isset($extra['bower-asset-main'])) $main = $extra['bower-asset-main'];
         // check if single value is given, then return a string instead of an array
         if (is_array($main) && count($main) == 1){
-          $main = $main[0];
+          $main = $this->vendorDir.'/bower-asset/'.$packageName.'/'.$main[0];
         }
         return $main;
       }
@@ -118,11 +118,9 @@ class RoboFile extends \Robo\Tasks
     $this->taskMinify('assets/scripts/main.js')
       ->to('dist/scripts/main.js')
       ->run();
-    $this->taskMinify('vendor/bower-asset/modernizr/modernizr.js')
+    $this->taskMinify($this->getAssetMain('modernizr'))
       ->to('dist/scripts/modernizr.js')
       ->run();
-    $this->say('jquery: ' . $this->getAssetMain('jquery'));
-    $this->say('modernizr: ' . $this->getAssetMain('modernizr'));
   }
 
   /**
