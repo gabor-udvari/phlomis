@@ -24,6 +24,9 @@ class RoboFile extends \Robo\Tasks
     if (! is_dir('dist/scripts')) {
       mkdir('dist/scripts');
     }
+    if (! is_dir('dist/fonts')) {
+      mkdir('dist/fonts');
+    }
 
     // get the vendorDir
     $io = new Composer\IO\NullIO();
