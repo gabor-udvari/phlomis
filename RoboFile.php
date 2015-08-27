@@ -42,11 +42,14 @@ class RoboFile extends \Robo\Tasks
   private function createPaths($paths){
     // iterate through paths array and create folder
     foreach ($paths as $path) {
-      $pathPart = '';
+      // set initial pathPart, / for absolute path and empty for relative paths
+      $pathPart = (strpos($path, '/') === 0) ? '/' : '';
+      // iterate through path and create parent folders before child folders
       foreach(explode('/', $path) as $part) {
-        // iterate through path and create parent folders before child folders
+        // skip empty path parts
+        if (empty($part)) continue;
         $pathPart .= $part.'/';
-        if (! is_dir($pathPart)) {
+        if (!empty($pathPart) && ! is_dir($pathPart)) {
           $this->taskFileSystemStack()
             ->mkdir($pathPart)
             ->run();
