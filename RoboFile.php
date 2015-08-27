@@ -15,12 +15,12 @@ class RoboFile extends \Robo\Tasks
    */
   public function __construct() {
     // check the build folder
-    $buildFolders = array(
+    $buildDirs = array(
       'dist/styles',
       'dist/scripts',
       'dist/fonts'
     );
-    $this->createPaths($buildFolders);
+    $this->createPaths($buildDirs);
 
     // get the vendorDir
     $io = new Composer\IO\NullIO();
@@ -42,18 +42,9 @@ class RoboFile extends \Robo\Tasks
   private function createPaths($paths){
     // iterate through paths array and create folder
     foreach ($paths as $path) {
-      // set initial pathPart, / for absolute path and empty for relative paths
-      $pathPart = (strpos($path, '/') === 0) ? '/' : '';
-      // iterate through path and create parent folders before child folders
-      foreach(explode('/', $path) as $part) {
-        // skip empty path parts
-        if (empty($part)) continue;
-        $pathPart .= $part.'/';
-        if (!empty($pathPart) && ! is_dir($pathPart)) {
-          $this->taskFileSystemStack()
-            ->mkdir($pathPart)
-            ->run();
-        }
+      // use Symfony 2 mkdir for recursive directory creation
+      if (! is_dir($path)) {
+        $this->_mkdir($path);
       }
     }
   }
