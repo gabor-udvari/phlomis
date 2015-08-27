@@ -7,26 +7,20 @@
 
 class RoboFile extends \Robo\Tasks
 {
-  protected $vendorDir;
-  protected $assetPackages;
+  private $vendorDir;
+  private $assetPackages;
 
   /**
    * Contruct for the class, checks and creates the dist folders
    */
   public function __construct() {
     // check the build folder
-    if (! is_dir('dist')) {
-      mkdir('dist');
-    }
-    if (! is_dir('dist/styles')) {
-      mkdir('dist/styles');
-    }
-    if (! is_dir('dist/scripts')) {
-      mkdir('dist/scripts');
-    }
-    if (! is_dir('dist/fonts')) {
-      mkdir('dist/fonts');
-    }
+    $buildFolders = array(
+      'dist/styles',
+      'dist/scripts',
+      'dist/fonts'
+    );
+    $this->createPaths($buildFolders);
 
     // get the vendorDir
     $io = new Composer\IO\NullIO();
@@ -41,6 +35,22 @@ class RoboFile extends \Robo\Tasks
       if ($package->getType() == 'bower-asset-library' ) {
         // store the extra information for assets
         $this->assetPackages[$package->getPrettyName()] = $package;
+      }
+    }
+  }
+
+  private function createPaths($paths){
+    // iterate through paths array and create folder
+    foreach ($paths as $path) {
+      $pathPart = '';
+      foreach(explode('/', $path) as $part) {
+        // iterate through path and create parent folders before child folders
+        $pathPart .= $part.'/';
+        if (! is_dir($pathPart)) {
+          $this->taskFileSystemStack()
+            ->mkdir($pathPart)
+            ->run();
+        }
       }
     }
   }
