@@ -37,6 +37,8 @@ class RoboFile extends \Robo\Tasks
         $this->assetPackages[$package->getPrettyName()] = $package;
       }
     }
+    // fix path issues
+    $this->pathDependencies();
   }
 
   private function createPaths($paths){
@@ -73,6 +75,17 @@ class RoboFile extends \Robo\Tasks
   }
 
   /**
+   * Search and replace path dependencies, simple replacement for wiredep
+   */
+  private function pathDependencies() {
+    // replace bower_asset directories
+    $this->taskReplaceInFile('assets/styles/main.scss')
+      ->from('../../bower_components')
+      ->to('')
+      ->run();
+  }
+
+  /**
    * Installation steps done after composer post-install
    * Copying the Sage files with rsync
    */
@@ -103,9 +116,6 @@ class RoboFile extends \Robo\Tasks
    * raised. If the `--production` flag is set: this task will fail outright.
    */
   public function styles() {
-    // fix path issues
-    $this->pathDependencies();
-
     $this->taskScss(
       [
         'assets/styles/main.scss' => 'dist/styles/main.css'
@@ -118,8 +128,7 @@ class RoboFile extends \Robo\Tasks
   }
 
   /**
-   * `gulp scripts` - Runs JSHint then compiles, combines, and optimizes Bower JS
-   * and project JS.
+   * `gulp scripts` - Runs JSHint then compiles, combines, and optimizes Bower JS and project JS.
    */
   public function scripts() {
     $this->taskMinify('assets/scripts/main.js')
@@ -130,14 +139,20 @@ class RoboFile extends \Robo\Tasks
       ->run();
   }
 
-  /**
-   * Search and replace path dependencies, simple replacement for wiredep
+  /** 
+   * `gulp watch` - Use BrowserSync to proxy your dev server and synchronize code changes across devices.
+   * Specify the hostname of your dev server at `manifest.config.devUrl`.
+   * When a modification is made to an asset, run the
+   * build step for that asset and inject the changes into the page.
+   * @link http://www.browsersync.io
    */
-  private function pathDependencies() {
-    // replace bower_asset directories
-    $this->taskReplaceInFile('assets/styles/main.scss')
-      ->from('../../bower_components')
-      ->to('')
-      ->run();
+  public function watch() {
+    $this->taskWatch()
+      ->monitor('assets/scripts/main.js', function() {
+        $this->scripts();
+      })
+      ->monitor('assets/styles/main.scss', function() {
+        $this->styles();
+      })->run();
   }
 }
