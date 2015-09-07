@@ -88,6 +88,11 @@ composer.phar update
 <strong>Robo</strong>: no task for that at this time
 <tr>
 <td>
+<strong>gulp</strong>: compile Scss with gulp-sass
+<td>
+<strong>Robo</strong>: compile Scss with leafo/scssphp
+<tr>
+<td>
 <strong>gulp</strong>: minifying JS with UglifyJS
 <td>
 <strong>Robo</strong>: minifying JS with JSQueeze
@@ -95,7 +100,7 @@ composer.phar update
 <td>
 <strong>gulp</strong>: minifying images with gulp-imagemin
 <td>
-<strong>Robo</strong>: no image minifying task for that at this time
+<strong>Robo</strong>: no image minifying task yet
 <tr>
 <td>
 <strong>gulp</strong>: watching files is built-in
@@ -105,5 +110,10 @@ composer.phar update
 <td>
 <strong>gulp</strong>: updating browsers with Browserify
 <td>
-<strong>Robo</strong>: updating browsers not implemented yet
+<strong>Robo</strong>: updating browsers not implemented yet, possible candidate: <a href="https://github.com/TomBZombie/NoF5">TomBZombie/NoF5</a>
 </table>
+
+## Tracking work required in upstream projects
+
+- Scss task in Robo: [done](https://github.com/Codegyre/Robo/pull/200)
+- Overriding main files in composer-asset-plugin: [waiting for merge](https://github.com/francoispluchino/composer-asset-plugin/pull/143)

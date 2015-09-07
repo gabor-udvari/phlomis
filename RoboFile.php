@@ -37,8 +37,6 @@ class RoboFile extends \Robo\Tasks
         $this->assetPackages[$package->getPrettyName()] = $package;
       }
     }
-    // fix path issues
-    $this->pathDependencies();
   }
 
   private function createPaths($paths){
@@ -116,6 +114,9 @@ class RoboFile extends \Robo\Tasks
    * raised. If the `--production` flag is set: this task will fail outright.
    */
   public function styles() {
+    // fix path issues
+    $this->pathDependencies();
+
     $this->taskScss(
       [
         'assets/styles/main.scss' => 'dist/styles/main.css'
