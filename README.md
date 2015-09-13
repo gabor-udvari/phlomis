@@ -85,7 +85,7 @@ composer.phar update
 <td>
 <strong>gulp</strong>: copy fonts with gulp-flatten
 <td>
-<strong>Robo</strong>: no task for that at this time
+<strong>Robo</strong>: waiting for [PR #215](https://github.com/Codegyre/Robo/pull/215)
 <tr>
 <td>
 <strong>gulp</strong>: compile Scss with gulp-sass
@@ -117,3 +117,4 @@ composer.phar update
 
 - Scss task in Robo: [done](https://github.com/Codegyre/Robo/pull/200)
 - Overriding main files in composer-asset-plugin: [waiting for merge](https://github.com/francoispluchino/composer-asset-plugin/pull/143)
+- FlattenDir task in Robo: [waiting for merge](https://github.com/Codegyre/Robo/pull/215)

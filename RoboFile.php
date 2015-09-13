@@ -140,6 +140,17 @@ class RoboFile extends \Robo\Tasks
       ->run();
   }
 
+  /**
+   * `gulp fonts` - Grabs all the fonts and outputs them in a flattened directory structure
+   * See: https://github.com/armed/gulp-flatten
+   */
+  public function fonts() {
+    $fonts = $this->getAssetPath('bootstrap').'assets/fonts/bootstrap/*';
+    $this->taskFlattenDir($fonts)
+      ->to('dist/fonts')
+      ->run();
+  }
+
   /** 
    * `gulp watch` - Use BrowserSync to proxy your dev server and synchronize code changes across devices.
    * Specify the hostname of your dev server at `manifest.config.devUrl`.
