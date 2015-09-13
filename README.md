@@ -85,7 +85,7 @@ composer.phar update
 <td>
 <strong>gulp</strong>: copy fonts with gulp-flatten
 <td>
-<strong>Robo</strong>: waiting for [PR #215](https://github.com/Codegyre/Robo/pull/215)
+<strong>Robo</strong>: waiting for <a href="https://github.com/Codegyre/Robo/pull/215">PR #215</a>
 <tr>
 <td>
 <strong>gulp</strong>: compile Scss with gulp-sass
