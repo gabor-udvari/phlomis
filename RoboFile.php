@@ -106,6 +106,8 @@ class RoboFile extends \Robo\Tasks
   public function build() {
     $this->styles();
     $this->scripts();
+    $this->fonts();
+    $this->images();
   }
 
   /** 
@@ -149,6 +151,13 @@ class RoboFile extends \Robo\Tasks
     $this->taskFlattenDir($fonts)
       ->to('dist/fonts')
       ->run();
+  }
+
+  /**
+   * `gulp images` - Run lossless compression on all the images.
+   */
+  public function images() {
+    $this->say('TODO: implement imagemin');
   }
 
   /** 
