@@ -118,3 +118,4 @@ composer.phar update
 - Scss task in Robo: [done](https://github.com/Codegyre/Robo/pull/200)
 - Overriding main files in composer-asset-plugin: [done](https://github.com/francoispluchino/composer-asset-plugin/pull/143)
 - FlattenDir task in Robo: [done](https://github.com/Codegyre/Robo/pull/215)
+- ImageMinify task in Robo: [waiting for merge](https://github.com/Codegyre/Robo/pull/228)

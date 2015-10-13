@@ -18,7 +18,8 @@ class RoboFile extends \Robo\Tasks
     $buildDirs = array(
       'dist/styles',
       'dist/scripts',
-      'dist/fonts'
+      'dist/fonts',
+      'dist/images'
     );
     $this->createPaths($buildDirs);
 
@@ -157,7 +158,9 @@ class RoboFile extends \Robo\Tasks
    * `gulp images` - Run lossless compression on all the images.
    */
   public function images() {
-    $this->say('TODO: implement imagemin');
+    $this->taskImageMinify('assets/images/*')
+      ->to('dist/images/')
+      ->run();
   }
 
   /** 
