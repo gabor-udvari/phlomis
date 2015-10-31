@@ -18,18 +18,12 @@
 	"bower-asset/sage": "8.2.1"
     },
     "require-dev"	: {
-	"codegyre/robo": "dev-imageminify-task as 0.5.4-dev",
+	"codegyre/robo": "~0.6",
 	"squizlabs/php_codesniffer": "~2.3",
 	"leafo/scssphp": "~0.1",
 	"patchwork/jsqueeze": "~1.0",
 	"composer/composer": "dev-master"
     },
-    "repositories": [
-	{
-	    "type": "vcs",
-	    "url": "https://github.com/gabor-udvari/robo"
-	}
-    ],
     "extra": {
 	"asset-repositories": {
 	    "bower-asset/sage": 

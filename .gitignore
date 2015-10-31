@@ -12,7 +12,7 @@ composer.lock
 .jshintrc
 .travis.yml
 404.php
-assets
+/assets
 base.php
 bower.json
 CHANGELOG.md
@@ -26,7 +26,6 @@ lib
 LICENSE.md
 package.json
 page.php
-RoboFile.php
 ruleset.xml
 screenshot.png
 search.php
