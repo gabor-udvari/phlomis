@@ -65,7 +65,7 @@ composer.phar update
 		</ul>
 		And put them into bower_components
 	<td>
-	  <strong>composer</strong>: download packages with composer-&#8203;asset-plugin:
+	  <strong>composer</strong>: download packages with <a href="https://github.com/fxpio/composer-asset-plugin">composer-&#8203;asset-plugin</a>:
 		<ul>
 			<li>modernizr
 			<li>bootstrap-sass-official
