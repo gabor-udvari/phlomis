@@ -15,7 +15,7 @@
     "require": {
 	"php": ">=5.4.0",
 	"fxp/composer-asset-plugin": ">=1.0",
-	"bower-asset/sage": "~8.2.0"
+	"bower-asset/sage": "~8.5.0"
     },
     "require-dev"	: {
 	"consolidation/robo": "~0.7.0",
@@ -56,6 +56,9 @@
 		    "./assets/fonts/bootstrap/glyphicons-halflings-regular.woff",
 		    "./assets/fonts/bootstrap/glyphicons-halflings-regular.woff2"
 		]
+	    },
+	    "resolutions": {
+		"bower-asset/bootstrap": "~4.0.0"
 	    }
 	}
     },

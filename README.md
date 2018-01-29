@@ -16,8 +16,8 @@ The name comes from the genus of plants called [Phlomis](https://en.wikipedia.or
 
 | Prerequisite    | How to check | How to install
 | --------------- | ------------ | ------------- |
-| PHP >= 5.4.x    | `php -v`     | [php.net](http://php.net/manual/en/install.php) |
-| Composer >= 1.0-dev  | `composer.phar --version` | [getcomposer.org](https://getcomposer.org/download/) |
+| PHP >= 5.6.x    | `php -v`     | [php.net](http://php.net/manual/en/install.php) |
+| Composer >= 1.0 | `composer.phar --version` | [getcomposer.org](https://getcomposer.org/download/) |
 | rsync >= 3.1.0	| `rsync --version` | [rsync.samba.org](https://rsync.samba.org/) |
 
 ## Installation
@@ -44,8 +44,19 @@ You can use all the original Gulp commands just like you used with Sage, except 
 Just edit your `composer.json`, increase the version number for Sage or put dev-master there and update with Composer:
 
 ```
-sed -i '/bower-asset\/sage/ s/8\.2\.1/dev-master/' composer.json
+sed -i '/bower-asset\/sage/ s/8\.4\.2/dev-master/' composer.json
 composer.phar update
+```
+
+There are no issues with 8.2, 8.3, 8.4 releases, but 8.5 still refers to Bootstrap 4 beta. To resolve this, you can force the stable Bootstrap 4 version with fxp/composer-asset-plugin like this:
+```
+"config": {
+	"fxp-asset": {
+		"resolutions": {
+			"bower-asset/bootstrap": "^4.0.0"
+		}
+	}
+}
 ```
 
 ## Comparison with Sage
