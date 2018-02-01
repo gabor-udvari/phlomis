@@ -64,13 +64,15 @@
     },
     "scripts" : {
 	"pre-install-cmd": [
-	    "ComposerHelper::skipAssets"
+	    "ComposerHelper::checkAssetInstaller"
 	],
 	"pre-update-cmd": [
-	    "ComposerHelper::skipAssets"
+	    "ComposerHelper::checkAssetInstaller"
 	],
 	"post-install-cmd": [
-	    "composer.phar update",
+	    "vendor/bin/robo install"
+	],
+	"post-update-cmd": [
 	    "vendor/bin/robo install"
 	]
     }

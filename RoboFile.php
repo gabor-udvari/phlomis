@@ -89,18 +89,24 @@ class RoboFile extends \Robo\Tasks
    * Copying the Sage files with rsync
    */
   public function install() {
-    $this->taskRsync()
-      ->fromPath($this->getAssetPath('sage'))
-      ->toPath('./')
-      ->recursive()
-      ->exclude('composer.json')
-      ->exclude('composer.lock')
-      ->exclude('.gitignore')
-      ->exclude('README.md')
-      // ->dryRun()
-      // ->verbose()
-      // ->stats()
-      ->run();
+    if ( ! $this->taskFilesystemStack()->exists('lib') ) {
+      $this->say("There is no lib directory, installation is required");
+      // the lib folder does not exist, then sage is not installed and need to be run
+      $this->taskRsync()
+        ->fromPath($this->getAssetPath('sage'))
+        ->toPath('./')
+        ->recursive()
+        ->exclude('composer.json')
+        ->exclude('composer.lock')
+        ->exclude('.gitignore')
+        ->exclude('README.md')
+        // ->dryRun()
+        // ->verbose()
+        // ->stats()
+        ->run();
+    } else {
+      $this->say("The lib directory exists, skipping installation");
+    }
   }
 
   /**
@@ -113,7 +119,7 @@ class RoboFile extends \Robo\Tasks
     $this->images();
   }
 
-  /** 
+  /**
    * `gulp styles` - Compiles, combines, and optimizes Bower CSS and project CSS
    * By default this task will only log a warning if a precompiler error is
    * raised. If the `--production` flag is set: this task will fail outright.
@@ -165,7 +171,7 @@ class RoboFile extends \Robo\Tasks
       ->run();
   }
 
-  /** 
+  /**
    * `gulp watch` - Use BrowserSync to proxy your dev server and synchronize code changes across devices.
    * Specify the hostname of your dev server at `manifest.config.devUrl`.
    * When a modification is made to an asset, run the

@@ -4,16 +4,23 @@ use Composer\Script\Event;
 
 class ComposerHelper
 {
-  public static function skipAssets(Event $event)
+  public static function checkAssetInstaller(Event $event)
   {
+    // Check if fxp/composer-asset-plugin is installed,
+    // if it is not, then exclude any bower-asset packages temporarily,
+    // so that the installation does not fail and other packages can be installed
     $composer = $event->getComposer();
 
-    $lockedrepo = $composer->getLocker()->getLockedRepository(true)->getPackages();
-    foreach ($lockedrepo as $package) {
-      if ($package->getName() == 'fxp/composer-asset-plugin') {
-        // composer-asset-plugin is installed, no need to exclude the bower-asset packages below
-        return;
+    try {
+      $lockedrepo = $composer->getLocker()->getLockedRepository(true)->getPackages();
+      foreach ($lockedrepo as $package) {
+        if ($package->getName() == 'fxp/composer-asset-plugin') {
+          // composer-asset-plugin is installed, no need to exclude the bower-asset packages below
+          return;
+        }
       }
+    } catch (LogicException $e) {
+      // If there is no lock file, then a LogicException is thrown
     }
 
     $requires['req'] = $composer->getPackage()->getRequires();
