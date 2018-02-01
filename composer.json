@@ -66,6 +66,9 @@
 	"pre-install-cmd": [
 	    "ComposerHelper::skipAssets"
 	],
+	"pre-update-cmd": [
+	    "ComposerHelper::skipAssets"
+	],
 	"post-install-cmd": [
 	    "composer.phar update",
 	    "vendor/bin/robo install"

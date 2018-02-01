@@ -11,6 +11,7 @@ composer.lock
 .jscsrc
 .jshintrc
 .travis.yml
+.github
 404.php
 /assets
 base.php

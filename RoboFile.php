@@ -93,6 +93,8 @@ class RoboFile extends \Robo\Tasks
       ->fromPath($this->getAssetPath('sage'))
       ->toPath('./')
       ->recursive()
+      ->exclude('composer.json')
+      ->exclude('composer.lock')
       ->exclude('.gitignore')
       ->exclude('README.md')
       // ->dryRun()
