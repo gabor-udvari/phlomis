@@ -1,6 +1,6 @@
 # Phlomis
 
-Phlomis is a project for replacing the Node.js based build tools of [Sage](https://github.com/roots/sage) to a PHP based one with [Composer](https://getcomposer.org/) and [Robo](http://codegyre.github.io/Robo/).
+Phlomis is a project for replacing the Node.js based build tools of [Sage](https://github.com/roots/sage) to a PHP based one with [Composer](https://getcomposer.org/), [Composer Asset Plugin](https://github.com/fxpio/composer-asset-plugin) and [Robo](http://codegyre.github.io/Robo/).
 
 The name comes from the genus of plants called [Phlomis](https://en.wikipedia.org/wiki/Phlomis). One of the members of the genus is Phlomis russeliana which has the common name Turkish sage. That and the "Ph" at the beginning makes it a perfect name for a PHP oriented fork of Sage.
 
@@ -24,12 +24,15 @@ The name comes from the genus of plants called [Phlomis](https://en.wikipedia.or
 
 - Clone the repository
 - Step inside the local folder
-- Install the dependencies with Composer
+- Install the dependencies with Composer, then run update right after it
+
+**Note**: the update after the first installation is required because [fxp/composer-asset-plugin](https://github.com/fxpio/composer-asset-plugin) is required for installing the actual Bower packages. The first installation will install fxp/composer-asset-plugin, then the second time it can install all the Bower packages.
 
 ```
 git clone git@github.com:gabor-udvari/phlomis.git
 cd phlomis
 composer.phar install
+composer.phar update
 ```
 
 ## Usage

@@ -89,21 +89,23 @@ class RoboFile extends \Robo\Tasks
    * Copying the Sage files with rsync
    */
   public function install() {
-    if ( ! $this->taskFilesystemStack()->exists('lib') ) {
-      $this->say("There is no lib directory, installation is required");
-      // the lib folder does not exist, then sage is not installed and need to be run
-      $this->taskRsync()
-        ->fromPath($this->getAssetPath('sage'))
-        ->toPath('./')
-        ->recursive()
-        ->exclude('composer.json')
-        ->exclude('composer.lock')
-        ->exclude('.gitignore')
-        ->exclude('README.md')
-        // ->dryRun()
-        // ->verbose()
-        // ->stats()
-        ->run();
+    if ( ! file_exists('lib') ) {
+      if ( file_exists($this->getAssetPath('sage')) ) {
+        $this->say("There is no lib directory, installation is required");
+        // the lib folder does not exist, then sage is not installed and need to be run
+        $this->taskRsync()
+          ->fromPath($this->getAssetPath('sage'))
+          ->toPath('./')
+          ->recursive()
+          ->exclude('composer.json')
+          ->exclude('composer.lock')
+          ->exclude('.gitignore')
+          ->exclude('README.md')
+          // ->dryRun()
+          // ->verbose()
+          // ->stats()
+          ->run();
+        }
     } else {
       $this->say("The lib directory exists, skipping installation");
     }
