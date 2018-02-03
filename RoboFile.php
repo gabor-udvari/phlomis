@@ -111,6 +111,7 @@ class RoboFile extends \Robo\Tasks
           ->exclude('LICENSE.md')
           ->exclude('package.json')
           ->exclude('README.md')
+          ->exclude('style.css')
           ->exclude('.travis.yml')
           // ->dryRun()
           // ->verbose()
