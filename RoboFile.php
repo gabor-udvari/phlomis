@@ -89,37 +89,30 @@ class RoboFile extends \Robo\Tasks
    * Copying the Sage files with rsync
    */
   public function install() {
-    if ( ! file_exists('lib') ) {
-      if ( file_exists($this->getAssetPath('sage')) ) {
-        $this->say("There is no lib directory, installation is required");
-        // the lib folder does not exist, then sage is not installed and need to be run
-        $this->taskRsync()
-          ->fromPath($this->getAssetPath('sage'))
-          ->toPath('./')
-          ->recursive()
-          ->exclude('.bowerrc')
-          ->exclude('bower.json')
-          ->exclude('composer.json')
-          ->exclude('composer.lock')
-          ->exclude('.editorconfig')
-          ->exclude('.gitignore')
-          ->exclude('.github')
-          ->exclude('gulpfile.json')
-          ->exclude('CHANGELOG.md')
-          ->exclude('.jscsrc')
-          ->exclude('.jshintrc')
-          ->exclude('LICENSE.md')
-          ->exclude('package.json')
-          ->exclude('README.md')
-          ->exclude('style.css')
-          ->exclude('.travis.yml')
-          // ->dryRun()
-          // ->verbose()
-          // ->stats()
-          ->run();
-        }
-    } else {
-      $this->say("The lib directory exists, skipping installation");
+    if ( file_exists($this->getAssetPath('sage')) ) {
+      // rsync runs with --ignore-existing so that it does not overwrite existing files
+      // we only exclude files which do not exist, and we do not want them
+      $this->taskRsync()
+        ->fromPath($this->getAssetPath('sage'))
+        ->toPath('./')
+        ->recursive()
+        ->option('ignore-existing')
+        ->exclude('.bowerrc')
+        ->exclude('bower.json')
+        ->exclude('composer.lock')
+        ->exclude('.editorconfig')
+        ->exclude('.github')
+        ->exclude('gulpfile.json')
+        ->exclude('CHANGELOG.md')
+        ->exclude('.jscsrc')
+        ->exclude('.jshintrc')
+        ->exclude('LICENSE.md')
+        ->exclude('package.json')
+        ->exclude('.travis.yml')
+        // ->dryRun()
+        // ->verbose()
+        // ->stats()
+        ->run();
     }
   }
 
@@ -170,7 +163,7 @@ class RoboFile extends \Robo\Tasks
    * See: https://github.com/armed/gulp-flatten
    */
   public function fonts() {
-    $fonts = $this->getAssetPath('bootstrap').'assets/fonts/bootstrap/*';
+    $fonts = 'assets/fonts/*.{eot,svg,ttf,woff,woff2}';
     $this->taskFlattenDir($fonts)
       ->to('dist/fonts')
       ->run();
@@ -182,6 +175,11 @@ class RoboFile extends \Robo\Tasks
   public function images() {
     $this->taskImageMinify('assets/images/*')
       ->to('dist/images/')
+      ->run();
+
+    // Copy .ico
+    $this->taskFlattenDir('assets/images/*.ico')
+      ->to('dist/images')
       ->run();
   }
 
