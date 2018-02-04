@@ -102,7 +102,7 @@ class RoboFile extends \Robo\Tasks
         ->exclude('composer.lock')
         ->exclude('.editorconfig')
         ->exclude('.github')
-        ->exclude('gulpfile.json')
+        ->exclude('gulpfile.js')
         ->exclude('CHANGELOG.md')
         ->exclude('.jscsrc')
         ->exclude('.jshintrc')
